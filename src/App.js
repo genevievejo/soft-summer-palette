@@ -67,49 +67,92 @@ function App() {
   return (
     <div className="container">
       <header className="site-header">
-        <h1>Soft Summer Color Palette</h1>
-        <p className="subtitle">Discover your perfect muted, cool-toned colors</p>
+        <h1>Soft Summer Color Palette Guide</h1>
+        <p className="subtitle">Professional Color Analysis for Your Natural Beauty</p>
         <div className="header-decoration"></div>
       </header>
 
       <main>
-        <section className="intro-section">
+        <article className="intro-section">
+          <h2>Understanding Soft Summer Colors</h2>
           <p className="intro-text">
-            Explore our curated collection of Soft Summer colors, perfect for creating a romantic, 
-            bohemian aesthetic. Each color has been carefully selected to complement your natural 
-            coloring and create harmonious outfits.
+            The Soft Summer color palette is characterized by muted, cool-toned colors that perfectly complement individuals with soft summer coloring. If you have soft summer characteristics - gentle contrast, muted features, and cool undertones - these colors will enhance your natural beauty.
           </p>
-        </section>
+          <div className="color-characteristics">
+            <h3>Key Characteristics of Soft Summer Colors:</h3>
+            <ul>
+              <li>Muted and sophisticated tones</li>
+              <li>Cool undertones with gentle warmth</li>
+              <li>Medium to light-medium contrast levels</li>
+              <li>Soft and dusty variations of classic colors</li>
+            </ul>
+          </div>
+        </article>
 
-        <div className="color-grid">
-          {softSummerColors.map((color, index) => (
-            <div
-              key={index}
-              className={`color-card ${selectedColor === color ? 'selected' : ''}`}
-              onClick={() => handleColorClick(color)}
-            >
-              <div className="color-preview" style={{ backgroundColor: color.hex }}>
-                <div className="color-info">
-                  <div className="color-name">{color.name}</div>
-                  <div className="hex-code">{color.hex}</div>
+        <section className="color-palette-section">
+          <h2>Professional TCX Color Palette</h2>
+          <p className="section-intro">
+            Explore our curated collection of Soft Summer colors, featuring authentic TCX color codes used by fashion industry professionals. Click any color to find matching clothing items.
+          </p>
+          <div className="color-grid" role="grid" aria-label="Soft Summer color palette">
+            {softSummerColors.map((color, index) => (
+              <div
+                key={index}
+                role="gridcell"
+                className={`color-card ${selectedColor === color ? 'selected' : ''}`}
+                onClick={() => handleColorClick(color)}
+                aria-label={`${color.name} color: ${color.hex}`}
+              >
+                <div 
+                  className="color-preview" 
+                  style={{ backgroundColor: color.hex }}
+                  aria-hidden="true"
+                >
+                  <div className="color-info">
+                    <div className="color-name">{color.name}</div>
+                    <div className="hex-code">{color.hex}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
 
         {selectedColor && (
           <div className="search-container visible">
-            <button className="search-button" onClick={handleSearch}>
+            <button 
+              className="search-button" 
+              onClick={handleSearch}
+              aria-label={`Search for clothing in ${selectedColor.name} color`}
+            >
               <span className="button-text">Find Clothing in This Color</span>
-              <span className="button-icon">→</span>
+              <span className="button-icon" aria-hidden="true">→</span>
             </button>
           </div>
         )}
+
+        <section className="color-tips">
+          <h2>How to Use Your Soft Summer Colors</h2>
+          <div className="tips-grid">
+            <div className="tip-card">
+              <h3>Wardrobe Building</h3>
+              <p>Create a cohesive wardrobe by selecting pieces in these harmonious colors. Focus on neutrals for base pieces and add muted accent colors for variety.</p>
+            </div>
+            <div className="tip-card">
+              <h3>Makeup Choices</h3>
+              <p>Choose makeup in soft, cool-toned shades that complement your natural coloring. Avoid high-contrast or warm-toned makeup.</p>
+            </div>
+            <div className="tip-card">
+              <h3>Accessories</h3>
+              <p>Select jewelry and accessories in soft silver tones or muted metals. Avoid bright gold or high-shine finishes.</p>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer>
-        <p>A curated collection of Soft Summer TCX colors</p>
+        <p>A comprehensive guide to Soft Summer seasonal color analysis</p>
+        <p className="copyright">© {new Date().getFullYear()} Soft Summer Color Palette Guide</p>
       </footer>
     </div>
   );
